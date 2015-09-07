@@ -1,0 +1,20 @@
+{
+  "name": "ansi-image",
+  "version": "0.0.0",
+  "description": "Show image in your console",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf build && lsc -cbo build *.ls",
+    "prepublish": "npm run build"
+  },
+  "author": "jigsaw (http://jgs.me)",
+  "license": "MIT",
+  "devDependencies": {
+    "livescript": "^1.4.0"
+  },
+  "dependencies": {
+    "@jigsaw/ansi-canvas": "^0.1.1",
+    "request": "^2.61.0"
+  }
+}
