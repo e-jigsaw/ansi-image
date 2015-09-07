@@ -1,28 +1,37 @@
 require! {
+  \is-url : isURL
   request
+  fs: {readFileSync}
+  path: {resolve}
   \@jigsaw/ansi-canvas : {term, Canvas}
 }
 
 module.exports = (url, opt)->
-  tm = term!
-  ctx = tm.getContext \2d
+  render = (buf)->
+    tm = term!
+    ctx = tm.getContext \2d
+    {width} = tm
+    img = new Canvas.Image!
+                ..src = buf
 
-  opt =
-    if opt?
-      opt.url = url
-    else
-      url: url
-      encoding: null
+    scale = if img.width > width then width / img.width else 1
+    scaleWidth = img.width * scale |> Math.floor
+    scaleHeight = img.height * scale |> Math.floor
 
-  {width} = tm
-  err, _, body <- request opt
-  img = new Canvas.Image!
-              ..src = body
+    ctx.drawImage img, 0, 0, scaleWidth, scaleHeight
 
-  scale = if img.width > width then width / img.width else 1
-  scaleWidth = img.width * scale |> Math.floor
-  scaleHeight = img.height * scale |> Math.floor
+    tm.render!
 
-  ctx.drawImage img, 0, 0, scaleWidth, scaleHeight
-
-  tm.render!
+  if isURL url
+    opt =
+      if opt?
+        opt.url = url
+      else
+        url: url
+        encoding: null
+    err, _, body <- request opt
+    render body
+  else
+    url = url.replace /~/, process.env.HOME
+    buf = resolve process.env.PWD, url |> readFileSync
+    render buf

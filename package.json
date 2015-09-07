@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@jigsaw/ansi-canvas": "^0.1.1",
+    "is-url": "^1.2.1",
     "request": "^2.61.0"
   }
 }
