@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Show image in your console",
   "main": "build/index.js",
+  "bind": {
+    "ansi-image": "bin/ansi-image"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf build && lsc -cbo build *.ls",
