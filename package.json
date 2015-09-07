@@ -1,6 +1,6 @@
 {
   "name": "ansi-image",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Show image in your console",
   "main": "build/index.js",
   "bind": {
