@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "Show image in your console",
   "main": "build/index.js",
-  "bind": {
+  "bin": {
     "ansi-image": "bin/ansi-image"
   },
   "scripts": {
